@@ -98,8 +98,8 @@ const PACKET_USER: u8 = 0x10;
 const PACKET_LAST: u8 = 0x7f;
 
 impl Session {
-	/// Create a new session out of comepleted handshake. This clones the handshake connection object
-	/// and leaves the handhsake in limbo to be deregistered from the event loop.
+	/// Create a new session out of completed handshake. This clones the handshake connection object
+	/// and leaves the handshake in limbo to be de-registered from the event loop.
 	pub fn new<Message>(io: &IoContext<Message>, socket: TcpStream, token: StreamToken, id: Option<&NodeId>,
 		nonce: &H256, host: &HostInfo) -> Result<Session, Error>
 		where Message: Send + Clone + Sync + 'static {
@@ -450,7 +450,7 @@ impl Session {
 			}
 		}
 
-		// Sort capabilities alphabeticaly.
+		// Sort capabilities alphabetically.
 		caps.sort();
 
 		i = 0;

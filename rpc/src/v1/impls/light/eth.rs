@@ -52,7 +52,7 @@ use v1::types::{
 };
 use v1::metadata::Metadata;
 
-const NO_INVALID_BACK_REFS: &'static str = "Fails only on invalid back-references; back-references here known to be valid; qed";
+const NO_INVALID_BACK_REFS: &str = "Fails only on invalid back-references; back-references here known to be valid; qed";
 
 /// Light client `ETH` (and filter) RPC.
 pub struct EthClient<T> {

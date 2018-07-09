@@ -353,7 +353,7 @@ impl EncryptedConnection {
 		}
 		header.append_raw(&[(len >> 16) as u8, (len >> 8) as u8, len as u8], 1);
 		header.append_raw(&[0xc2u8, 0x80u8, 0x80u8], 1);
-		//TODO: ger rid of vectors here
+		//TODO: get rid of vectors here
 		let mut header = header.out();
 		let padding = (16 - (payload.len() % 16)) % 16;
 		header.resize(16, 0u8);

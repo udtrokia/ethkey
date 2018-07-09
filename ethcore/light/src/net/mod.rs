@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-//! PLP Protocol Version 1 implementation.
+//! PIP Protocol Version 1 implementation.
 //!
 //! This uses a "Provider" to answer requests.
 
@@ -80,7 +80,7 @@ const UPDATE_INTERVAL: Duration = Duration::from_millis(5000);
 const PACKET_COUNT_V1: u8 = 9;
 
 /// Supported protocol versions.
-pub const PROTOCOL_VERSIONS: &'static [(u8, u8)] = &[
+pub const PROTOCOL_VERSIONS: &[(u8, u8)] = &[
 	(1, PACKET_COUNT_V1),
 ];
 
@@ -251,7 +251,7 @@ pub trait Handler: Send + Sync {
 	fn tick(&self, _ctx: &BasicContext) { }
 	/// Called on abort. This signals to handlers that they should clean up
 	/// and ignore peers.
-	// TODO: coreresponding `on_activate`?
+	// TODO: corresponding `on_activate`?
 	fn on_abort(&self) { }
 }
 
@@ -312,9 +312,9 @@ mod id_guard {
 		/// (for forming responses, triggering handlers) until defused
 		pub fn new(peers: RwLockReadGuard<'a, PeerMap>, peer_id: PeerId, req_id: ReqId) -> Self {
 			IdGuard {
-				peers: peers,
-				peer_id: peer_id,
-				req_id: req_id,
+				peers,
+				peer_id,
+				req_id,
 				active: true,
 			}
 		}
@@ -378,9 +378,9 @@ impl LightProtocol {
 		);
 
 		LightProtocol {
-			provider: provider,
+			provider,
 			config: params.config,
-			genesis_hash: genesis_hash,
+			genesis_hash,
 			network_id: params.network_id,
 			pending_peers: RwLock::new(HashMap::new()),
 			peers: RwLock::new(HashMap::new()),
@@ -388,8 +388,8 @@ impl LightProtocol {
 			flow_params: RwLock::new(Arc::new(flow_params)),
 			handlers: Vec::new(),
 			req_id: AtomicUsize::new(0),
-			sample_store: sample_store,
-			load_distribution: load_distribution,
+			sample_store,
+			load_distribution,
 		}
 	}
 
@@ -827,14 +827,14 @@ impl LightProtocol {
 			local_credits: local_flow.create_credits(),
 			status: status.clone(),
 			capabilities: capabilities.clone(),
-			remote_flow: remote_flow,
+			remote_flow,
 			sent_head: pending.sent_head,
 			last_update: pending.last_update,
 			pending_requests: RequestSet::default(),
 			failed_requests: Vec::new(),
 			propagated_transactions: HashSet::new(),
 			skip_update: false,
-			local_flow: local_flow,
+			local_flow,
 			awaiting_acknowledge: None,
 		}));
 
