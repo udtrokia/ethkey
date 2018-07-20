@@ -49,11 +49,11 @@ enum ProtocolState {
 
 /// Peer session over encrypted connection.
 /// When created waits for Hello packet exchange and signals ready state.
-/// Sends and receives protocol packets and handles basic packes such as ping/pong and disconnect.
+/// Sends and receives protocol packets and handles basic packets such as ping/pong and disconnect.
 pub struct Session {
 	/// Shared session information
 	pub info: SessionInfo,
-	/// Session ready flag. Set after successfull Hello packet exchange
+	/// Session ready flag. Set after successful Hello packet exchange
 	had_hello: bool,
 	/// Session is no longer active flag.
 	expired: bool,

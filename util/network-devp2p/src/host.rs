@@ -1035,7 +1035,7 @@ impl IoHandler<NetworkIoMessage> for Host {
 						h.timeout(&NetworkContext::new(io, timer.protocol, None, self.sessions.clone(), &reserved), timer.token);
 					}
 				},
-				None => { warn!("Unknown timer token: {}", token); } // timer is not registerd through us
+				None => { warn!("Unknown timer token: {}", token); } // timer is not registered through us
 			}
 		}
 	}

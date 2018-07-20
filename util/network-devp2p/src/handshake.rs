@@ -45,7 +45,7 @@ enum HandshakeState {
 	StartSession,
 }
 
-/// `RLPx` protocol handhake. See https://github.com/ethereum/devp2p/blob/master/rlpx.md#encrypted-handshake
+/// `RLPx` protocol handshake. See https://github.com/ethereum/devp2p/blob/master/rlpx.md#encrypted-handshake
 pub struct Handshake {
 	/// Remote node public key
 	pub id: NodeId,
