@@ -15,8 +15,9 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 // [modify]: udtrokia@gihuab.com
+pub extern crate env_logger;
+
 extern crate docopt;
-extern crate env_logger;
 extern crate ethkey;
 extern crate parity_wordlist;
 extern crate rustc_hex;
@@ -24,12 +25,13 @@ extern crate serde;
 extern crate threadpool;
 
 use std::num::ParseIntError;
-use std::{env, fmt, process, io, sync};
+use std::{fmt, io, sync}; // use std::{env, fmt, process, io, sync};
 
 use self::docopt::Docopt;
-use ethkey::{KeyPair, Random, Brain, BrainPrefix, Prefix, Error as EthkeyError, Generator, sign, verify_public, verify_address, brain_recover};
-use panic_hook;
-use rustc_hex::{FromHex, FromHexError};
+pub use panic_hook;
+
+use self::ethkey::{KeyPair, Random, Brain, BrainPrefix, Prefix, Error as EthkeyError, Generator, sign, verify_public, verify_address, brain_recover};
+use self::rustc_hex::{FromHex, FromHexError};
 
 const USAGE: &'static str = r#"
 Ethereum keys generator.
