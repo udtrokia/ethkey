@@ -19,6 +19,7 @@ use super::{KeyPair, Generator, Secret};
 use parity_wordlist;
 
 /// Simple brainwallet.
+#[derive(Debug)]
 pub struct Brain(String);
 
 impl Brain {
